@@ -1,0 +1,1359 @@
+/* Arquivo de estilos da landing page.
+   As cores agora estao aplicadas diretamente em cada bloco.
+   Assim, alterar uma cor em um ponto especifico nao muda o restante do site sem querer.
+
+   Guia rapido:
+   - Procure por "Header" para editar menu e logo.
+   - Procure por "Hero" para editar a primeira dobra, titulo e foto principal.
+   - Procure por "Botoes" para editar CTAs do WhatsApp.
+   - Procure por "depoimentos" para editar o carrossel.
+   - Procure por "FAQ" para editar o acordeao de perguntas.
+   - Procure por "Rodape" para editar a parte final do site. */
+
+/* Reset basico: evita espacamentos inesperados e mantem medidas previsiveis. */
+* {
+  box-sizing: border-box;
+}
+
+/* Rolagem suave e compensacao para o header fixo. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+/* Base geral da pagina: aqui voce muda o fundo principal do site, a cor padrao dos textos e a fonte usada em quase todos os paragrafos. */
+body {
+  margin: 0;
+  background: #fbfcf7;
+  color: #1e293b;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Elementos globais: links, imagens e botoes herdam o visual do layout. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+/* Largura maxima das secoes. */
+.container {
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* Espacamento vertical padrao entre blocos. */
+.section {
+  padding: 104px 0;
+}
+
+/* Header fixo: aqui voce edita a barra superior que fica presa no topo, incluindo fundo, borda inferior e efeito de vidro. */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  background: rgba(244, 248, 240, 0.94);
+  border-bottom: 1px solid rgba(20, 35, 61, 0.09);
+  backdrop-filter: blur(18px);
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* Header quando a pagina rola: aumenta um pouco a definicao da barra. */
+.site-header.is-scrolled {
+  background: rgba(251, 252, 247, 0.97);
+  box-shadow: 0 14px 42px rgba(20, 35, 61, 0.08);
+}
+
+/* Distribuicao interna do header: aqui voce controla altura da barra, alinhamento da logo e distancia entre logo, menu e botao mobile. */
+.header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* Logo do header e do rodape: aqui voce controla o espaco ocupado pela logo e remove qualquer texto extra ao lado dela. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  color: #0d2707b7;
+  font-size: 0;
+  font-weight: 800;
+}
+
+.brand-mark,
+.brand-text {
+  display: none !important;
+}
+
+/* Imagem da logo. */
+.brand-logo-img {
+  width: auto;
+  height: 48px;
+  max-width: 190px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Menu desktop: aqui voce altera distancia, cor e peso dos links "Servicos", "Sobre", "Como funciona" e "FAQ". */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  color: #0d2707b7;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+/* Itens do menu com sublinhado animado. */
+.main-nav a {
+  position: relative;
+  padding: 8px 0;
+}
+
+.main-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #0d2707b7;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Botao hamburguer usado no mobile: aqui voce muda tamanho, fundo, borda e aparencia do botao que abre o menu no celular. */
+.menu-toggle {
+  width: 44px;
+  height: 44px;
+  display: none;
+  place-items: center;
+  gap: 5px;
+  padding: 11px;
+  border: 1px solid rgba(20, 35, 61, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 2px;
+  display: block;
+  background: #0d2707b7;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-open .menu-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-open .menu-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Hero: primeira dobra do site. Aqui voce muda altura inicial, espacamento superior e fundo verde suave atras do titulo e da foto. */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 130px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 24%, rgba(76, 166, 38, 0.11), transparent 30%),
+    linear-gradient(180deg, #f4f8f0 0%, #fbfcf7 100%);
+}
+
+/* Circulo decorativo do hero. */
+.hero::before {
+  position: absolute;
+  top: 112px;
+  right: -8vw;
+  width: 46vw;
+  min-width: 420px;
+  aspect-ratio: 1;
+  content: "";
+  border: 1px solid rgba(76, 166, 38, 0.16);
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+/* Grids principais: aqui voce controla as colunas das secoes com texto de um lado e imagem/bloco do outro, incluindo distancia entre elas. */
+.hero-grid,
+.about-grid,
+.trust-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(390px, 0.9fr);
+  align-items: center;
+  gap: 94px;
+}
+
+/* Camadas do hero para ficarem acima dos elementos decorativos. */
+.hero-copy,
+.hero-media {
+  position: relative;
+  z-index: 1;
+}
+
+/* Selo pequeno acima dos titulos. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #0d2707b7;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Linha lateral do selo. */
+.eyebrow::before {
+  width: 34px;
+  height: 1px;
+  content: "";
+  background: currentColor;
+}
+
+/* Espacamento padrao dos textos. */
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+/* Estilo principal dos titulos. */
+h1,
+h2 {
+  position: relative;
+  color: #0d2707b7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+/* Titulo principal do hero: aqui voce muda o tamanho maximo do titulo grande "Teve seus DIREITOS desrespeitados?". */
+h1 {
+  max-width: 640px;
+  margin-bottom: 26px;
+  font-size: clamp(2.65rem, 4.7vw, 4.65rem);
+}
+
+/* Titulos das demais secoes. */
+h2 {
+  margin-bottom: 18px;
+  font-size: clamp(2.2rem, 4.5vw, 4.25rem);
+}
+
+/* Destaques em italico dos titulos. */
+h1 em,
+h2 em {
+  position: relative;
+  display: inline-block;
+  color: #b69245;;
+  font-style: italic;
+  text-shadow: 0 8px 24px rgba(13, 39, 7, 0.18);
+}
+
+h1 em::after,
+h2 em::after {
+  position: absolute;
+  right: -0.05em;
+  bottom: 0.04em;
+  left: -0.05em;
+  z-index: -1;
+  height: 0.22em;
+  content: "";
+  border-radius: 999px;
+  background: #b6ab4513;;
+}
+
+/* Paragrafos de apoio. */
+.hero-copy p,
+.section-heading p,
+.about-copy p,
+.final-cta p {
+  color: #6b7280;
+  font-size: 1.08rem;
+}
+
+/* Texto logo abaixo do titulo do hero. */
+.hero-copy > p {
+  max-width: 610px;
+  margin-bottom: 34px;
+  font-size: 1.2rem;
+}
+
+/* Agrupamento do CTA e texto pequeno no hero. */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.hero-actions small {
+  color: #6b7280;
+  font-weight: 650;
+}
+
+/* Botoes gerais. */
+.btn {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 24px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.96rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+/* Botao principal de WhatsApp: aqui voce muda a cor, texto branco e sombra dos botoes verdes de conversao. */
+.btn-primary {
+  background: #0f9f3ad7;
+  color: #ffffff;
+  box-shadow: 0 16px 34px rgba(15, 159, 138, 0.26);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #087b6b;
+  box-shadow: 0 18px 42px rgba(15, 159, 138, 0.34);
+}
+
+/* Botao secundario em dourado. */
+.btn-gold {
+  background: #0f9f3ad7;
+  color: #ffffff;
+  box-shadow: 0 16px 34px rgba(15, 159, 138, 0.26);
+}
+
+/* Botao maior usado no CTA final. */
+.btn-large {
+  min-height: 62px;
+  padding-inline: 32px;
+}
+
+/* Icone de WhatsApp desenhado via mascara CSS. */
+.wa-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.02 3.2A12.72 12.72 0 0 0 5.08 22.4L3.2 28.8l6.58-1.78A12.73 12.73 0 1 0 16.02 3.2Zm0 2.28a10.45 10.45 0 0 1 8.88 15.96 10.43 10.43 0 0 1-13.86 3.35l-.46-.27-3.9 1.05 1.08-3.76-.3-.49A10.43 10.43 0 0 1 16.02 5.48Zm-4.1 5.38c-.22 0-.58.08-.88.42-.3.34-1.16 1.13-1.16 2.76 0 1.62 1.19 3.2 1.35 3.42.16.22 2.3 3.7 5.66 5.04 2.8 1.12 3.37.9 3.98.84.6-.06 1.96-.8 2.24-1.58.27-.77.27-1.44.19-1.58-.08-.14-.3-.22-.63-.39-.33-.16-1.96-.97-2.26-1.08-.3-.11-.52-.16-.74.17-.22.33-.85 1.08-1.05 1.3-.19.22-.38.25-.71.08-.33-.16-1.4-.51-2.66-1.64-.98-.87-1.65-1.96-1.84-2.29-.19-.33-.02-.51.14-.67.15-.14.33-.38.49-.57.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.57-.08-.16-.74-1.79-1.02-2.45-.27-.64-.54-.55-.74-.56l-.66-.01Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.02 3.2A12.72 12.72 0 0 0 5.08 22.4L3.2 28.8l6.58-1.78A12.73 12.73 0 1 0 16.02 3.2Zm0 2.28a10.45 10.45 0 0 1 8.88 15.96 10.43 10.43 0 0 1-13.86 3.35l-.46-.27-3.9 1.05 1.08-3.76-.3-.49A10.43 10.43 0 0 1 16.02 5.48Zm-4.1 5.38c-.22 0-.58.08-.88.42-.3.34-1.16 1.13-1.16 2.76 0 1.62 1.19 3.2 1.35 3.42.16.22 2.3 3.7 5.66 5.04 2.8 1.12 3.37.9 3.98.84.6-.06 1.96-.8 2.24-1.58.27-.77.27-1.44.19-1.58-.08-.14-.3-.22-.63-.39-.33-.16-1.96-.97-2.26-1.08-.3-.11-.52-.16-.74.17-.22.33-.85 1.08-1.05 1.3-.19.22-.38.25-.71.08-.33-.16-1.4-.51-2.66-1.64-.98-.87-1.65-1.96-1.84-2.29-.19-.33-.02-.51.14-.67.15-.14.33-.38.49-.57.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.57-.08-.16-.74-1.79-1.02-2.45-.27-.64-.54-.55-.74-.56l-.66-.01Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.wa-icon.dark {
+  color: #ffffff;
+}
+
+/* Cards das fotos: aqui voce muda a caixa que envolve as fotos da advogada, como altura, borda arredondada, fundo e sombra. */
+.photo-card {
+  position: relative;
+  min-height: 800px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 42%),
+    #0d2707b7;
+  box-shadow: 0 24px 70px rgba(20, 35, 61, 0.12);
+}
+
+/* Moldura interna das fotos. */
+.photo-card::before {
+  position: absolute;
+  inset: 22px;
+  z-index: 2;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+/* Imagem real dentro do card: aqui voce muda o enquadramento das fotos. object-position sobe ou desce o rosto dentro da moldura. */
+.photo-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+/* Card da foto principal do hero. */
+.photo-card-hero {
+  min-height: 610px;
+}
+
+/* Selo flutuante sobre a foto do hero: aqui voce edita o card pequeno "Orientacao clara" que aparece por cima da imagem principal. */
+.hero-badge {
+  position: absolute;
+  right: -24px;
+  bottom: 42px;
+  z-index: 2;
+  width: min(260px, 70%);
+  padding: 20px;
+  border: 1px solid rgba(164, 112, 56, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 20px 48px rgba(20, 35, 61, 0.14);
+}
+
+.hero-badge strong,
+.hero-badge span {
+  display: block;
+}
+
+.hero-badge strong {
+  color: #0d2707b7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.22rem;
+}
+
+.hero-badge span {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Cabecalho padrao das secoes. */
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 54px;
+  text-align: center;
+}
+
+.section-heading .eyebrow {
+  justify-content: center;
+}
+
+/* Fundo da secao de servicos. */
+.services {
+  background: #fbfcf7;
+}
+
+/* Grade dos cards de atuacao. */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* Visual compartilhado por cards de servicos, etapas e depoimentos: aqui voce muda borda, fundo, sombra e animacao de hover desses cards. */
+.service-card,
+.step-card,
+.testimonial-card {
+  border: 1px solid rgba(20, 35, 61, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 42px rgba(20, 35, 61, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Espacamento interno dos cards de atuacao. */
+.service-card {
+  min-height: 226px;
+  padding: 30px;
+}
+
+/* Hover dos cards. */
+.service-card:hover,
+.step-card:hover,
+.testimonial-card:hover {
+  border-color: rgba(164, 112, 56, 0.36);
+  box-shadow: 0 24px 58px rgba(20, 35, 61, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Numero circular dos cards de atuacao. */
+.service-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background: #0d2707b7;
+  color: #e7fad9;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* Titulos dos cards de atuacao e etapas. */
+.service-card h3,
+.step-card h3 {
+  color: #0d2707b7;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* Textos internos dos cards e respostas. */
+.service-card p,
+.step-card p,
+.testimonial-card p,
+.accordion-content p {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+/* Box "Importante saber" abaixo dos servicos: aqui voce muda a caixa de alerta que aparece depois da lista de direitos trabalhistas. */
+.notice-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 36px;
+  padding: 32px;
+  border: 1px solid rgba(164, 112, 56, 0.24);
+  border-radius: 8px;
+  background: #f4f8f0;
+}
+
+/* Titulo do box de aviso. */
+.notice-box h3 {
+  margin-bottom: 6px;
+  color: #0d2707b7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.65rem;
+}
+
+/* Texto do box de aviso. */
+.notice-box p {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+/* Fundos das secoes sobre e depoimentos. */
+.about,
+.testimonials {
+  background: #f4f8f0;
+}
+
+/* Grid da secao sobre. */
+.about-grid {
+  grid-template-columns: minmax(340px, 0.82fr) minmax(0, 1fr);
+}
+
+/* Card da foto profissional: aqui voce ajusta a caixa da foto da secao "Sobre", separada da foto principal do hero. */
+.photo-card-about {
+  min-height: 560px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), transparent 45%),
+    #223047;
+}
+
+/* Frase de destaque da secao sobre. */
+.about-copy .lead {
+  color: #0d2707b7;
+  font-size: 1.22rem;
+  font-weight: 750;
+}
+
+/* Botao da secao sobre. */
+.about-copy .btn {
+  margin-top: 10px;
+}
+
+/* Fundo da secao de confianca. */
+.trust {
+  background: #fbfcf7;
+}
+
+/* Grid da secao de confianca. */
+.trust-grid {
+  grid-template-columns: minmax(0, 0.86fr) minmax(380px, 1fr);
+  align-items: stretch;
+}
+
+/* Lista de beneficios com checks. */
+.check-list {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Cada item da lista de confianca. */
+.check-list li {
+  position: relative;
+  padding: 20px 22px 20px 62px;
+  border: 1px solid rgba(20, 35, 61, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0d2707b7;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(20, 35, 61, 0.05);
+}
+
+/* Icone de check da lista. */
+.check-list li::before {
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  content: "";
+  border-radius: 50%;
+  background: rgba(164, 112, 56, 0.14);
+  color: #0d2707b7;
+  font-weight: 900;
+  transform: translateY(-50%);
+}
+
+/* Bloco escuro de confianca: aqui voce muda o painel destacado com fundo verde/escuro e texto branco na secao de confianca. */
+.trust-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(164, 112, 56, 0.18), transparent 44%),
+    #0d2707b7;
+  color: #ffffff;
+  box-shadow: 0 24px 70px rgba(20, 35, 61, 0.12);
+}
+
+/* Textos do bloco escuro de confianca. */
+.trust-panel p {
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.12rem;
+}
+
+/* Primeiro texto maior do bloco escuro. */
+.trust-panel p:first-child {
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+/* Botao dentro do bloco escuro. */
+.trust-panel .btn {
+  align-self: flex-start;
+  margin-top: 16px;
+}
+
+/* Fundo da secao de processo. */
+.process {
+  background: linear-gradient(180deg, #fbfcf7, #f4f8f0);
+}
+
+/* Grade de etapas. */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Card de cada etapa. */
+.step-card {
+  min-height: 272px;
+  padding: 28px;
+}
+
+/* Numero de cada etapa. */
+.step-card span {
+  display: inline-grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  margin-bottom: 28px;
+  border-radius: 50%;
+  background: #0d2707b7;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+}
+
+/* Centraliza o botao abaixo das etapas. */
+.center-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+/* Carrossel dos depoimentos: aqui voce muda a largura total do carrossel que mostra dois depoimentos por vez. */
+.testimonial-carousel {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Janela que esconde os slides fora da tela. */
+.testimonial-viewport {
+  overflow: hidden;
+}
+
+/* Trilho movel do carrossel. */
+.testimonial-track {
+  display: flex;
+  transition: transform 0.42s ease;
+  will-change: transform;
+}
+
+/* Cada slide mostra 2 depoimentos. */
+.testimonial-slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* Card de depoimento: aqui voce muda tamanho, padding, fundo e aparencia de cada avaliacao individual. */
+.testimonial-card {
+  min-height: 286px;
+  padding: 30px;
+  background: #ffffff;
+}
+
+/* Topo do depoimento: perfil a esquerda e Google a direita. */
+.testimonial-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+/* Cabecalho do depoimento com avatar e nome. */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Avatar sem foto: aqui voce muda tamanho, formato e estilo da bolinha com a inicial do primeiro nome. */
+.profile-initial {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  border-radius: 50%;
+  background: #0d2707b7;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+/* Cores diferentes para os avatares sem foto: aqui voce muda a cor de fundo da inicial de cada cliente separadamente. */
+.testimonial-slide:nth-child(1) .testimonial-card:nth-child(1) .profile-initial {
+  background: #4f6f52;
+}
+
+.testimonial-slide:nth-child(1) .testimonial-card:nth-child(2) .profile-initial {
+  background: #3f6f8f;
+}
+
+.testimonial-slide:nth-child(2) .testimonial-card:nth-child(1) .profile-initial {
+  background: #8a5a44;
+}
+
+.testimonial-slide:nth-child(2) .testimonial-card:nth-child(2) .profile-initial {
+  background: #2f80ed;
+}
+
+.testimonial-slide:nth-child(3) .testimonial-card:nth-child(1) .profile-initial {
+  background: #1597a5;
+}
+
+.testimonial-slide:nth-child(3) .testimonial-card:nth-child(2) .profile-initial {
+  background: #b06f9f;
+}
+
+/* Nome e quantidade de avaliacoes do cliente. */
+.testimonial-author strong,
+.testimonial-author div > span {
+  display: block;
+}
+
+.testimonial-author strong {
+  color: #0d2707b7;
+  line-height: 1.2;
+}
+
+.testimonial-author div > span {
+  color: #6b7280;
+  font-size: 0.86rem;
+}
+
+/* Simbolo do Google no canto oposto ao perfil: aqui voce altera o icone redondo que aparece no topo direito de cada depoimento. */
+.google-mark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 1.99 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E")
+      center / 20px 20px no-repeat,
+    #ffffff;
+  color: transparent;
+  font-size: 0;
+  box-shadow: 0 0 0 1px rgba(20, 35, 61, 0.1);
+}
+
+/* Estrelas dos depoimentos. */
+.stars {
+  margin-bottom: 16px;
+  color: #fbbf24;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+}
+
+/* Texto dos depoimentos. */
+.testimonial-card p {
+  margin-bottom: 0;
+  color: #1e293b;
+}
+
+/* Controles do carrossel: aqui voce muda o alinhamento das setas e bolinhas abaixo dos depoimentos. */
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+/* Botoes de avancar e voltar. */
+.carousel-button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(20, 35, 61, 0.12);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0d2707b7;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(20, 35, 61, 0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.carousel-button:hover,
+.carousel-button:focus-visible {
+  border-color: rgba(164, 112, 56, 0.4);
+  color: #0d2707b7;
+  transform: translateY(-2px);
+}
+
+/* Bolinhas de navegacao do carrossel. */
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(20, 35, 61, 0.22);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.carousel-dots button.is-active {
+  width: 24px;
+  border-radius: 999px;
+  background: #0d2707b7;
+}
+
+/* Fundo da secao FAQ. */
+.faq {
+  background: #fbfcf7;
+}
+
+/* Grid do FAQ. */
+.faq-grid {
+  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1fr);
+  align-items: flex-start;
+}
+
+/* Coluna fixa de introducao do FAQ no desktop. */
+.faq-intro {
+  position: sticky;
+  top: 106px;
+}
+
+.faq-intro h2 {
+  margin-bottom: 28px;
+}
+
+/* Lista do acordeao. */
+.accordion {
+  display: grid;
+  gap: 12px;
+}
+
+/* Item individual do FAQ. */
+.accordion-item {
+  border: 1px solid rgba(20, 35, 61, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(20, 35, 61, 0.05);
+}
+
+/* Pergunta clicavel do FAQ: aqui voce muda altura, fonte, padding e cor das perguntas do acordeao. */
+.accordion-item button {
+  width: 100%;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 0;
+  background: transparent;
+  color: #0d2707b7;
+  font-size: 0.98rem;
+  font-weight: 850;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Circulo do sinal de abrir/fechar FAQ. */
+.accordion-item button span {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 50%;
+  background: rgba(164, 112, 56, 0.12);
+}
+
+/* Tracos do sinal de abrir/fechar FAQ. */
+.accordion-item button span::before,
+.accordion-item button span::after {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 10px;
+  height: 2px;
+  content: "";
+  background: #0d2707b7;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+/* Traco vertical do sinal de abrir FAQ. */
+.accordion-item button span::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Estado aberto do sinal do FAQ. */
+.accordion-item.is-open button span::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Resposta recolhida do acordeao. */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+/* Texto da resposta do FAQ. */
+.accordion-content p {
+  padding: 0 24px 24px;
+}
+
+/* CTA final antes do rodape: aqui voce muda o bloco verde/escuro final com a ultima chamada para WhatsApp. */
+.final-cta {
+  background:
+    linear-gradient(135deg, rgba(164, 112, 56, 0.2), transparent 42%),
+    #0d2707b7;
+  text-align: center;
+}
+
+/* Largura do conteudo do CTA final. */
+.final-cta-inner {
+  max-width: 850px;
+}
+
+/* Cores do texto do CTA final. */
+.final-cta h2,
+.final-cta p {
+  color: #ffffff;
+}
+
+/* Paragrafo do CTA final. */
+.final-cta p {
+  max-width: 680px;
+  margin: 0 auto 32px;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+/* Selo do CTA final. */
+.final-cta .eyebrow {
+  color: #e7fad9;
+}
+
+/* Rodape: aqui voce muda o bloco final escuro, com logo centralizada e aviso institucional abaixo. */
+.site-footer {
+  padding: 58px 0 46px;
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.78);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Distribuicao do conteudo do rodape: aqui voce centraliza logo, linha decorativa, copyright e aviso etico. */
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
+/* Logo no rodape: aqui voce controla o tamanho da marca no centro do bloco escuro. */
+.brand-footer {
+  justify-content: center;
+}
+
+.brand-footer .brand-logo-img {
+  height: 82px;
+  max-width: 230px;
+}
+
+/* Linha pequena abaixo da logo, igual ao estilo da referencia. */
+.footer-divider {
+  width: 58px;
+  height: 1px;
+  display: block;
+  background: #c7965a;
+}
+
+/* Textos do rodape. */
+.site-footer p {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.copyright {
+  color: #0d2707b7;
+  font-weight: 500;
+}
+
+/* Aviso etico no rodape. */
+.ethics {
+  max-width: 760px;
+  color: #0d2707b7;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+/* Botao flutuante fixo de WhatsApp: aqui voce muda o botao que fica preso no canto inferior direito durante toda a navegacao. */
+.floating-whatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 999px;
+  background: #0f9f3ad7;
+  color: #ffffff;
+  font-weight: 850;
+  box-shadow: 0 18px 42px rgba(15, 159, 138, 0.36);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+/* Hover do botao flutuante. */
+.floating-whatsapp:hover,
+.floating-whatsapp:focus-visible {
+  background: #087b6b;
+  box-shadow: 0 20px 52px rgba(15, 159, 138, 0.42);
+  transform: scale(1.04);
+}
+
+/* Estado inicial dos elementos animados ao rolar. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Estado visivel dos elementos animados ao rolar. */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Acessibilidade: reduz animacoes para quem prefere menos movimento. */
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Tablet: transforma grids principais em uma coluna. */
+@media (max-width: 1040px) {
+  .hero-grid,
+  .about-grid,
+  .trust-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  .hero-media {
+    max-width: 640px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .photo-card-hero,
+  .photo-card-about {
+    min-height: 520px;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faq-intro {
+    position: static;
+  }
+}
+
+/* Mobile: ativa menu hamburguer e reduz espacamentos. */
+@media (max-width: 820px) {
+  .container {
+    width: min(100% - 28px, 680px);
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+
+  .header-inner {
+    min-height: 68px;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 68px;
+    right: 14px;
+    left: 14px;
+    display: grid;
+    gap: 6px;
+    padding: 16px;
+    border: 1px solid rgba(20, 35, 61, 0.12);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 24px 70px rgba(20, 35, 61, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .menu-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .main-nav a {
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible {
+    background: #f4f8f0;
+  }
+
+  .main-nav a::after {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 108px;
+  }
+
+  h1 {
+    font-size: clamp(2.55rem, 12vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(2.05rem, 10vw, 3.2rem);
+  }
+
+  .hero-copy > p,
+  .hero-copy p,
+  .section-heading p,
+  .about-copy p,
+  .final-cta p {
+    font-size: 1rem;
+  }
+
+  .services-grid,
+  .testimonial-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .notice-box {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .notice-box .btn,
+  .about-copy .btn,
+  .faq-intro .btn,
+  .center-action .btn,
+  .final-cta .btn {
+    width: 100%;
+  }
+
+  .trust-panel {
+    padding: 32px 24px;
+    border-radius: 18px;
+  }
+
+  .trust-panel p:first-child {
+    font-size: 1.65rem;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+
+  .floating-whatsapp {
+    right: 14px;
+    bottom: 14px;
+    max-width: calc(100% - 28px);
+    min-height: 50px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile pequeno: ajusta cards, FAQ e selo da imagem. */
+@media (max-width: 520px) {
+  .photo-card,
+  .photo-card-hero,
+  .photo-card-about {
+    min-height: 420px;
+    border-radius: 20px;
+  }
+
+  .photo-card span {
+    font-size: 1.75rem;
+  }
+
+  .hero-badge {
+    right: 14px;
+    bottom: 18px;
+    width: calc(100% - 28px);
+  }
+
+  .service-card,
+  .step-card,
+  .testimonial-card,
+  .notice-box {
+    padding: 24px;
+  }
+
+  .accordion-item button {
+    min-height: 66px;
+    padding: 18px;
+    font-size: 0.9rem;
+  }
+
+  .accordion-content p {
+    padding: 0 18px 20px;
+  }
+}
