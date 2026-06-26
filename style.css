@@ -642,14 +642,23 @@ h2 em::after {
   left: 22px;
   width: 24px;
   height: 24px;
-  display: grid;
-  place-items: center;
   content: "";
   border-radius: 50%;
-  background: rgba(164, 112, 56, 0.14);
-  color: #0d2707b7;
-  font-weight: 900;
+  background: #e7fad9;
+  box-shadow: inset 0 0 0 1px rgba(13, 39, 7, 0.12);
   transform: translateY(-50%);
+}
+
+.check-list li::after {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  width: 8px;
+  height: 4px;
+  content: "";
+  border-bottom: 3px solid #0d2707b7;
+  border-left: 3px solid #0d2707b7;
+  transform: translateY(-62%) rotate(-45deg);
 }
 
 /* Bloco escuro de confianca: aqui voce muda o painel destacado com fundo verde/escuro e texto branco na secao de confianca. */
