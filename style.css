@@ -419,12 +419,12 @@ h2 em::after {
 
 /* Imagem real dentro do card: aqui voce muda o enquadramento das fotos. object-position sobe ou desce o rosto dentro da moldura. */
 .photo-card img {
-  position: absolute;
+  position: relative;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 130%;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: center 250%;
 }
 
 /* Card da foto principal do hero. */
@@ -1074,7 +1074,7 @@ h2 em::after {
 }
 
 .brand-footer .brand-logo-img {
-  height: 82px;
+  height: 164px;
   max-width: 230px;
 }
 
